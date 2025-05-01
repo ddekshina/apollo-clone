@@ -1,0 +1,32 @@
+{
+  "name": "apollo-clone",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "server": "node backend/server.js",
+    "seed": "node backend/seeds/doctorSeeds.js",
+    "dev:all": "concurrently \"npm run server\" \"npm run dev\""
+  },
+  "dependencies": {
+    "axios": "^1.6.1",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "next": "14.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8.53.0",
+    "eslint-config-next": "14.0.2",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.4.17"
+  }
+}
