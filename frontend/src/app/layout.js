@@ -1,13 +1,11 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { metadata } from './metadata';
 
-// Use Inter font instead of Geist
+// Use Inter font
 const inter = Inter({ subsets: ['latin'] });
 
-export const metadata = {
-  title: 'Apollo247 Clone - Consult Top General Physicians Online',
-  description: 'Book appointments with top general physicians and internal medicine specialists. Get medical advice, second opinions, and medical prescriptions online.',
-};
+export { metadata };
 
 export default function RootLayout({ children }) {
   return (

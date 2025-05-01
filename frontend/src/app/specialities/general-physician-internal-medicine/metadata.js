@@ -50,4 +50,17 @@ export const metadata = {
     authors: [
       { name: 'Your Name', url: 'https://yourportfolio.com' },
     ],
+    // Structured data for rich results
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'MedicalSpecialty',
+      name: 'General Physician & Internal Medicine',
+      description: 'Book appointments with top general physicians and internal medicine specialists. Get medical advice, second opinions, and medical prescriptions online.',
+      url: 'https://apollo247-clone.vercel.app/specialties/general-physician-internal-medicine',
+      provider: {
+        '@type': 'MedicalOrganization',
+        name: 'Apollo247 Clone',
+        url: 'https://apollo247-clone.vercel.app',
+      }
+    }
   }

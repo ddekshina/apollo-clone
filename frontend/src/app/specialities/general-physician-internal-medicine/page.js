@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
-import axios from 'axios';
-import Header from '../components/Header';
-import DoctorCard from '../components/DoctorCard';
-import FilterSidebar from '../components/FilterSidebar';
+'use client';
 
-export default function Home() {
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Header from '../../../components/Header';
+import DoctorCard from '../../../components/DoctorCard';
+import FilterSidebar from '../../../components/FilterSidebar';
+
+export default function GeneralPhysicianPage() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -46,7 +47,9 @@ export default function Home() {
         params.append('languages', filters.languages.join(','));
       }
 
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/doctors/list-doctors?${params.toString()}`);
+      // Connect to the backend API
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      const response = await axios.get(`${apiUrl}/doctors/list-doctors?${params.toString()}`);
       
       setDoctors(response.data.data);
       setTotalPages(response.data.pages);
@@ -54,6 +57,10 @@ export default function Home() {
     } catch (error) {
       console.error('Error fetching doctors:', error);
       setLoading(false);
+      
+      // In case of error, provide some fallback data for display
+      setDoctors([]);
+      setTotalPages(0);
     }
   };
 
@@ -69,20 +76,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Head>
-        <title>Consult Top General Physicians Online | Apollo 247 Clone</title>
-        <meta name="description" content="Book appointments with top general physicians and internal medicine specialists. Get medical advice, second opinions, and medical prescriptions online." />
-        <meta name="keywords" content="general physician, internal medicine, doctor consultation, online doctor, medical advice, Apollo 247 clone" />
-        <link rel="canonical" href="https://your-domain.com/specialties/general-physician-internal-medicine" />
-        <meta property="og:title" content="Consult Top General Physicians Online | Apollo 247 Clone" />
-        <meta property="og:description" content="Book appointments with top general physicians and internal medicine specialists. Get medical advice, second opinions, and medical prescriptions online." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://your-domain.com/specialties/general-physician-internal-medicine" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Consult Top General Physicians Online | Apollo 247 Clone" />
-        <meta name="twitter:description" content="Book appointments with top general physicians and internal medicine specialists. Get medical advice, second opinions, and medical prescriptions online." />
-      </Head>
-
       <Header />
       
       <main className="container mx-auto px-4 py-8">
